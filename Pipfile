@@ -6,11 +6,12 @@ name = "pypi"
 [packages]
 django = "*"
 gunicorn = "*"
-pytest = "*"
-pytest-django = "*"
 
 [dev-packages]
 flake8 = "*"
+pytest = "*"
+pytest-django = "*"
+python-decouple = "*"
 
 [requires]
 python_version = "3.11"
