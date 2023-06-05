@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+
 from functools import partial
 from pathlib import Path
 
@@ -29,9 +30,10 @@ SECRET_KEY = config('SECRET_KEY', default='JheyJhey13')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool, default=False)
 
-ALLOWED_HOSTS = config('ALLOWED_HOST', cast=Csv())
 
-AUTH_USER_MODEL = 'base.User'
+
+ALLOWED_HOSTS = ['*']
+
 
 # Application definition
 
@@ -44,6 +46,8 @@ INSTALLED_APPS = [
     'collectfast',
     'django.contrib.staticfiles',
     'pypro.base.views',
+    'pypro.base',
+
 ]
 
 MIDDLEWARE = [
@@ -89,6 +93,7 @@ DATABASES = {
 
 }
 
+AUTH_USER_MODEL = 'base.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -135,6 +140,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 COLLECTFAST_ENABLED = False
+
 
 #AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 
