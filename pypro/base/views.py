@@ -5,4 +5,4 @@ from django.shortcuts import render
 # Create your views here.
 
 def home(request):
-    return HttpResponse('teste Jhemes Django')
+    return HttpResponse('<html><body>Teste Jhemes Django</body></html>', content_type='text/html')

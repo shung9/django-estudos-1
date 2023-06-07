@@ -80,6 +80,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pypro.wsgi.application'
 
+#Configuração Django debug tollbar
+
+INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -132,7 +140,7 @@ USE_TZ = True
 # configuração do ambiente de desenvolvimento
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 
@@ -164,7 +172,7 @@ COLLECTFAST_ENABLED = False
 # --------------------------------------------------
 
 #    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
-#    STATIC_S3_PATH = 'static'
+#    STATIC_S3_PATH = 'staticfiles'
 #    STATIC_ROOT = f'/{STATIC_S3_PATH}'
 #    STATIC_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}'
 #    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
