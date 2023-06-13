@@ -10,12 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import sentry_sdk
+import dj_database_url
 
 from functools import partial
-from pathlib import Path
-
-import dj_database_url
 from decouple import config, Csv
+from pathlib import Path
+from sentry_sdk.integrations.django import DjangoIntegration
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -194,3 +197,7 @@ COLLECTFAST_ENABLED = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #
+SENTRY_DSN = config('SENTRY_DSN', default=None)
+
+if SENTRY_DSN:
+    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
