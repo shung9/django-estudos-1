@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'collectfast',
     'django.contrib.staticfiles',
-    'pypro.base',
-    'pypro.base.views',
+    #registrar o app, basta colocar o nome do app
+    'pypro',
 
 ]
 
@@ -68,7 +68,7 @@ ROOT_URLCONF = 'pypro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,6 +104,8 @@ DATABASES = {
 
 }
 
+#é melhor criar um app onde vais gerenciar o usuário 
+#por exemplo um app account
 AUTH_USER_MODEL = 'base.User'
 
 # Password validation
@@ -142,13 +144,21 @@ USE_TZ = True
 
 # configuração do ambiente de desenvolvimento
 
-
+#definido em default podes usar o 'static' no app
 STATIC_URL = '/static/'
+
+#para personalizar o static file
+#muda o nome pra static, pra nao confundir o django
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles'), ]
+
 #STATICFILES_DIRS = [BASE_DIR / 'staticfiles']
 
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 COLLECTFAST_ENABLED = False
