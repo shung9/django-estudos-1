@@ -1,0 +1,3 @@
+# Cuidado ao usar nome que django tambem usa
+# tipo test, python, django, etc...
+# Podes ter a lista completa na documentação do django
