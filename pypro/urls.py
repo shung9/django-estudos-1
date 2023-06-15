@@ -16,14 +16,27 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
+# option 1
+#o include é no caso que queres gerenciar os urls um outro aplicativo 
+#nesse caso, path('', include('nome_do_app.urls'))
+# e é preciso criar um arquivo urls.py no aplicativo onde queres gerenciar, no teu caso base/
+#nesse caso o from pypro.base.views import home, nao é necessário 
 from django.urls import path, include
-
+# option 2
+# so podes usar se queres gerenciar os apps no aplicativo principal 
 from pypro.base.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    # '' define a pagina copagina como pagina principal o home
+    
+    path('', home, name='home'),#option 2
+    # path('', include('base.urls')), #option 1
 ]
+#no caso esta no localhost é um hack pra poder usar o static
+#é preciso importa, from django.conf.urls.static import static
+#if settings.DEBUG:
+   # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 
 if settings.DEBUG:
     import  debug_toolbar
